@@ -1,0 +1,11 @@
+
+<h1>Edit Your List</h1>
+
+<form action='/list/<%= @list.id %>' method='post'>
+  <input id='hidden' type='hidden' name='_method' value='patch'>
+
+  Name: <input type='text' id='content' name='content' value='<%= @tweet.content %>' required>
+  <br></br>
+
+  <input type='submit' id='submit' value='Edit List'>
+</form>

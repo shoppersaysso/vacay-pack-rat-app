@@ -1,0 +1,12 @@
+<h1>Here are all of <%= @user.username %>'s lists:</h1>
+
+
+
+<p><% @user.lists.each do |list| %>
+     <a href="/lists/<%= list.id %>"><%= list.name %> </a><br>
+    <% end %> </p>
+
+      <br>
+
+      <p><a href="/lists/index">View an Existing List</a></p>
+      <p> <a href="/lists/new">Create a New List</a></p>

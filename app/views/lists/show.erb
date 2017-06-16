@@ -1,0 +1,17 @@
+<h1><%=@list.name %>'s List!</h1>
+
+      <p><% @items.each do |item| %>
+           <a href="/items/<%= item.id %>"><%= item.name %> </a><br>
+          <% end %> </p>
+
+            <br>
+
+<a href='/lists/<%= @list.id %>/edit'><h4>Edit List</h4></a>
+<p>
+    <form action="/lists/<%=@list.id%>/delete" method="post">
+      <input type="hidden" id="hidden" name="_method" value="delete">
+      <input type='submit' id="delete" name="delete" value='Delete Tweet'>
+    </form>
+
+    <p><a href="/lists/index">View an Existing List</a></p>
+    <p> <a href="/lists/new">Create a New List</a></p>

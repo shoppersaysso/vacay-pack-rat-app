@@ -1,0 +1,15 @@
+<h1><%=@item.name %></h1>
+
+      <p>Item: <% @item.name%></p>
+      <p>Category:<% @item.category %></p>
+            <br>
+
+<a href='/items/<%= @item.id %>/edit'><h4>Edit Item</h4></a>
+<p>
+    <form action="/items/<%=@item.id%>/delete" method="post">
+      <input type="hidden" id="hidden" name="_method" value="delete">
+      <input type='submit' id="delete" name="delete" value='Delete Item'>
+    </form>
+
+    <p><a href="/lists/index">View an Existing List</a></p>
+    <p> <a href="/lists/new">Create a New List</a></p>

@@ -1,0 +1,12 @@
+
+<h1>Edit Item</h1>
+
+<form action='/items/<%= @item.id %>' method='post'>
+  <input id='hidden' type='hidden' name='_method' value='patch'>
+
+  Name: <input type='text' id='name' name='name' value='<%= @item.name %>' required>
+  Category: <input type='text' id='category' name='category' value='<%= @item.category %>' required>
+  <br></br>
+
+  <input type='submit' id='submit' value='Edit Item'>
+</form>
