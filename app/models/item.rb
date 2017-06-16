@@ -1,5 +1,5 @@
 class Item
-
-  belongs_to :lists
+  # 
+  # belongs_to :lists
 
 end
