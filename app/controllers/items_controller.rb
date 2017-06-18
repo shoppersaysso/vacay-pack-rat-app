@@ -1,4 +1,4 @@
-class Controller < ApplicationController
+class ItemsController < ApplicationController
 
   get "/items/new" do
       @user = current_user
