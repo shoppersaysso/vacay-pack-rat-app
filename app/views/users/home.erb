@@ -1,7 +1,6 @@
 <h1>Welcome, <%= @user.username %>!</h1>
 
 
-
 <p><% @user.lists.each do |list| %>
      <a href="/lists/<%= list.id %>"><%= list.name %> </a><br>
     <% end %> </p>

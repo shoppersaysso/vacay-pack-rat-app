@@ -1,5 +1,5 @@
-class Item
-  # 
-  # belongs_to :lists
+class Item < ActiveRecord::Base
+
+  belongs_to :lists
 
 end

@@ -1,17 +1,24 @@
-=<!DOCTYPE html>
-  <html>
+
+
+<!DOCTYPE html>
+<html lang="en">
   <head>
-  <title>
-    Vacay Pack Rat</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Vacay Pack Rat is an app to create packing lists for vacations">
-    <style>
-      body {background-color:#35c3f9;background-repeat:no-repeat;background-position:top left;background-attachment:fixed;}
-      h1{font-family:Arial, sans-serif;color:#000000;background-color:#FFFFFF;}
-      p {font-family:Georgia, serif;font-size:14px;font-style:normal;font-weight:normal;color:#000000;background-color:#FFFFFF;}
-    </style>
-    </head>
-    <body>
+
+    <title>Vacay Pack Rat</title>
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
     <h1>
               <% if session[:user_id] %>
                 <%= @user.username %>'s account
@@ -20,5 +27,5 @@
               <%= yield %>
             </h1>
  <br>
-</body>
+  </body>
 </html>
