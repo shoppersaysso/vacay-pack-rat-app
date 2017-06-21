@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect '/home'
     else
-      erb :"/users/home"
+      erb :"/users/login"
     end
   end
 
@@ -42,7 +42,7 @@ class ApplicationController < Sinatra::Base
       flash[:error] = "You have missing required fields."
       redirect '/signup'
     else
-      @user = User.new(params)
+      @user = User.create(username: params["username"], password: params["password"])
       @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Welcome, Pack Rat!"

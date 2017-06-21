@@ -13,3 +13,17 @@
 
     <p><a href="/lists/index">View an Existing List</a></p>
     <p> <a href="/lists/new">Create a New List</a></p>
+
+
+    <h1><%=@user.username %>'s List!</h1>
+
+          <p><% @item.all.each do |item| %>
+               <a href="/items/<%= item.id %>"><%= item.name %> </a><br>
+              <% end %> </p>
+
+                <br>
+
+
+
+        <p><a href="/lists/index">View an Existing List</a></p>
+        <p> <a href="/lists/new">Create a New List</a></p>

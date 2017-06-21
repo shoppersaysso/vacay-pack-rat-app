@@ -1,28 +1,6 @@
 class ItemsController < ApplicationController
 
-  get "/items/new" do
-      @user = current_user
-      if logged_in?
-        erb :"/items/new"
-      else
-        redirect '/login'
-      end
-    end
 
-    post "/new" do
-      if logged_in? && params[:name] != ""
-        @user = current_user
-        @item = Item.create(name: params["name"], user_id: params[:user_id])
-        @item.save
-        erb :"//show"
-      elsif logged_in? && params[:name] == ""
-        flash[:notice] = "Your item name is blank!"
-        redirect '/items/new'
-      else
-        flash[:notice] = "Please log in to proceed"
-        redirect '/login'
-      end
-    end
 
     get "/" do
       if logged_in?
@@ -33,9 +11,10 @@ class ItemsController < ApplicationController
       end
     end
 
-    get "//:id" do
+    get "/items/:id" do
       @user = current_user
       @item = Item.find_by_id(params[:id])
+      @list = List.find_by_id(params[:id])
       if !logged_in?
         redirect '/login'
       else
@@ -59,11 +38,11 @@ class ItemsController < ApplicationController
     patch "/items/:id" do
       if params[:content] == ""
         flash[:notice] = "Please enter content to proceed"
-        redirect "//#{params[:id]}/edit"
+        redirect "/items/#{params[:id]}/edit"
       else
         @item = Item.find(params[:id])
         @item.update(content: params[:content])
-        redirect "//#{@item.id}"
+        redirect "/items/#{@item.id}"
       end
     end
 
@@ -72,11 +51,11 @@ class ItemsController < ApplicationController
       @item = Item.find_by_id(params[:id])
       if logged_in? && @item.user_id == session[:user_id]
         @item.delete
-        erb :'//delete'
+        erb :'/items/delete'
       elsif !logged_in? || @item.user_id != session[:user_id]
-        erb :'//error'
+        erb :'/items/error'
       else
-        erb :'//error'
+        erb :'/items/error'
       end
     end
 

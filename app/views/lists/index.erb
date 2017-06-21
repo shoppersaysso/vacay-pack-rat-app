@@ -2,7 +2,7 @@
 
 
 
-<p><% @user.lists.each do |list| %>
+<p><% List.all.each do |list| %>
      <a href="/lists/<%= list.id %>"><%= list.name %> </a><br>
     <% end %> </p>
 

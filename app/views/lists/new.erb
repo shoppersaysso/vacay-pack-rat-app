@@ -1,11 +1,11 @@
 <h1>Create a New List:</h1>
 
-<form action="/new" method="POST">
+<form action="/lists/new" method="POST">
   <p><h2><label>Name:</label></h2>
   <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
-  <input type="text" name="content" id="content" required</p>
-  <p><h2><label>Choose from existing items to add or add a new item:</label></h2>
-  <!-- display list to add, must add at least one item, -->
+  <input type="text" name="list[name]" id="list-name" required</p>
+    <p><h2><label>Public?:</label></h2>
+      <input type="checkbox" name="list[public]" id="list-public"</p>
   <br></br>
    <input type="submit" id='submit' value="Create">
 </form>

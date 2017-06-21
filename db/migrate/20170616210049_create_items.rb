@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :name
       t.string :category
       t.integer :list_id
+      t.integer :user_id
     end
   end
 end

@@ -1,11 +1,12 @@
-<h1><%=@list.name %>'s List!</h1>
+<h1><%=@user.username %>'s List</h1>
 
-      <p><% @items.each do |item| %>
+
+    <p><% Item.all.each do |item| %>
            <a href="/items/<%= item.id %>"><%= item.name %> </a><br>
           <% end %> </p>
 
             <br>
-
+<a href='/lists/<%= @list.id %>/add'><h4>Add Items to List</h4></a>
 <a href='/lists/<%= @list.id %>/edit'><h4>Edit List</h4></a>
 <p>
     <form action="/lists/<%=@list.id%>/delete" method="post">
