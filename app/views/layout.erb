@@ -9,23 +9,50 @@
 
     <title>Vacay Pack Rat</title>
 
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+          <!-- Styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
   </head>
   <body>
+    <div class="container">
+
+            <div class="row">
+              <div class="col-sm-12">
+               <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Pack Rat</a>
+                      </div>
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                          <li><a href="/users/home">My Account</a></li>
+                          <li><a href="/lists/index">Lists</a></li>
+                          <li><a href="/items/index">Items</a></li>
+                          <li><a href="/logout">Logout</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+              </div>
+            </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <script src="js/bootstrap.min.js"></script>
-    <h1>
-              <% if session[:user_id] %>
-                <%= @user.username %>'s account
-                  <a href ="/logout">Logout</a>
-                  <%end%>
+
+    <p>
+
               <%= yield %>
-            </h1>
+            </p>
+
  <br>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>

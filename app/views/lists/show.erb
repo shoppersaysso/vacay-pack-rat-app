@@ -6,10 +6,10 @@
           <% end %> </p>
 
             <br>
-<a href='/lists/<%= @list.id %>/add'><h4>Add Items to List</h4></a>
-<a href='/lists/<%= @list.id %>/edit'><h4>Edit List</h4></a>
+<a href='/lists//add'><h4>Add Items to List</h4></a>
+<a href='/lists//edit'><h4>Edit List</h4></a>
 <p>
-    <form action="/lists/<%=@list.id%>/delete" method="post">
+    <form action="/lists//delete" method="post">
       <input type="hidden" id="hidden" name="_method" value="delete">
       <input type='submit' id="delete" name="delete" value='Delete Tweet'>
     </form>
