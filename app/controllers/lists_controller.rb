@@ -12,9 +12,9 @@ class ListsController < ApplicationController
     post "/lists/new" do
       if logged_in? && params[:name] != ""
         @user = current_user
-        @list = List.new(:name => params["list"]["name"], :public => params["list"]["public"])
+        @list = List.create(:name => params[:name], :privacy => params[:privacy], :user_id => session[:user_id])
         @list.save
-        redirect "/lists/:id"
+        redirect to '/lists/:id'
       elsif logged_in? && params[:name] == ""
         flash[:notice] = "Your list name is blank!"
         redirect '/lists/new'
@@ -27,7 +27,7 @@ class ListsController < ApplicationController
     get "/lists" do
       if logged_in?
         @user = current_user
-        @list = List.find(params[:id])
+        @list = List.find_by_id(params[:id])
         @list.user_id == session[:user_id]
         erb :"/lists/index"
       else
@@ -38,7 +38,6 @@ class ListsController < ApplicationController
     get "/lists/:id" do
       @user = current_user
       @list = List.find_by_id(params[:id])
-      # @items = @list.items.all
       if !logged_in?
         redirect '/login'
       else
@@ -49,9 +48,9 @@ class ListsController < ApplicationController
     get "/lists/:id/edit" do
       if logged_in?
         @user = current_user
-        @list = List.find(params[:id])
+        @list = List.find_by_id(params[:id])
         if @list.user_id == session[:user_id]
-        erb :'/lists/edit'
+          erb :'/lists/edit'
         else
           redirect '/login'
         end
@@ -66,8 +65,9 @@ class ListsController < ApplicationController
         flash[:notice] = "Please enter content to proceed"
         redirect "/lists/#{params[:id]}/edit"
       else
-        @list = List.find(params[:id])
-        @list.update(name: params[:name])
+        @list = List.find_by_id(params[:id])
+        @list.name = params[:name]
+        @list.save
         redirect "/lists/#{@list.id}"
       end
     end

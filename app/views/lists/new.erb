@@ -3,9 +3,12 @@
 <form action="/lists/new" method="POST">
   <p><h2><label>Name:</label></h2>
   <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
-  <input type="text" name="list[name]" id="list-name" required</p>
-    <p><h2><label>Public?:</label></h2>
-      <input type="checkbox" name="list[public]" id="list-public"</p>
+  <input type="text" name="name" id="list-name" required</p>
+  <select name="Privacy">
+  <option value="Private" name="private">Private</option>
+  <option value="Public" name="public">Public</option>
+
+</select>
   <br></br>
    <input type="submit" id='submit' value="Create">
 </form>

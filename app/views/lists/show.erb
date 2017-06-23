@@ -1,5 +1,6 @@
 <h1><%=@user.username %>'s List</h1>
 
+<h1><%=@list.name %></h1>
 
     <p><% Item.all.each do |item| %>
            <a href="/items/<%= item.id %>"><%= item.name %> </a><br>
