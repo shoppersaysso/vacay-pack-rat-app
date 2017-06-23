@@ -1,11 +1,14 @@
-<h1>Welcome, <%= @user.username %>!</h1>
+<h1>Welcome, <%= current_user.username %>!</h1>
+<br></br>
 
-
-<p><% @my_lists.each do |list| %>
-     <a href="/lists/<%= list.id %>"><%= list.name %> </a><br>
-    <% end %> </p>
+<p><h3>
+  <% if current_user.lists.empty? %>
+    <p>You don't have any lists right now! Why don't you <a href="/lists/new">create one?</a></p>
+  <% else %>
+    <p>Here are your lists:</p></h3>
+<p><% current_user.lists.each do |list| %>
+     <a href="/lists/<%= list.id %>"><h3><%= list.name %> </a></h3><br>
+    <% end %>
+    <% end %></p>
 
       <br>
-
-      <p><a href="/lists/index">View an Existing List</a></p>
-      <p> <a href="/lists/new">Create a New List</a></p>

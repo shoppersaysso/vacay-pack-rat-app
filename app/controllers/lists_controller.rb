@@ -14,7 +14,7 @@ class ListsController < ApplicationController
         @user = current_user
         @list = List.create(:name => params[:name], :privacy => params[:privacy], :user_id => session[:user_id])
         @list.save
-        redirect to '/lists/:id'
+        redirect("lists/#{@list.id}")
       elsif logged_in? && params[:name] == ""
         flash[:notice] = "Your list name is blank!"
         redirect '/lists/new'
@@ -28,7 +28,6 @@ class ListsController < ApplicationController
       if logged_in?
         @user = current_user
         @list = List.find_by_id(params[:id])
-        @list.user_id == session[:user_id]
         erb :"/lists/index"
       else
         redirect '/login'
@@ -36,11 +35,11 @@ class ListsController < ApplicationController
     end
 
     get "/lists/:id" do
-      @user = current_user
-      @list = List.find_by_id(params[:id])
       if !logged_in?
         redirect '/login'
       else
+        @user = current_user
+        @list = List.find_by_id(params[:id])
         erb :"/lists/show"
       end
     end
@@ -75,7 +74,7 @@ class ListsController < ApplicationController
     get "/lists/:id/add" do
         @user = current_user
         @items = Item.all
-        @list = List.find_by(id: params[:id])
+        @list = List.find_by_id(params[:id])
         if logged_in?
           erb :"/lists/add"
         else
@@ -87,12 +86,9 @@ class ListsController < ApplicationController
       if logged_in? && params[:name] != ""
         @user = current_user
         @list = List.find_by(id: params[:id])
-        @item = Item.create(:name => params["item"]["name"], :list_id => params[@list.id], :user_id => session[:user_id])
+        @item = Item.new(:name => params["item"]["name"], :list_id => params[:list_id], :user_id => session[:user_id])
         @item.save
         erb :"/lists/show"
-      # elsif logged_in? && params[:name] == ""
-      #   flash[:notice] = "Your item name is blank!"
-      #   redirect '/lists/add'
       else
         flash[:notice] = "Please log in to proceed"
         redirect '/login'

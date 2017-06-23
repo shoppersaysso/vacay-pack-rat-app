@@ -1,16 +1,13 @@
 <h1>Create a New List:</h1>
 
 <form action="/lists/new" method="POST">
-  <p><h2><label>Name:</label></h2>
+  <p><h3><label>Name:</label></h3>
   <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
   <input type="text" name="name" id="list-name" required</p>
-  <select name="Privacy">
-  <option value="Private" name="private">Private</option>
-  <option value="Public" name="public">Public</option>
-
+  <br></br>
+  <p><h5><input id="privacy" type="radio" name="privacy" value="private"> Private</h5></p>
+  <p><h5><input id="privacy" type="radio" name="privacy" value="public"> Public</h5></p>
 </select>
   <br></br>
    <input type="submit" id='submit' value="Create">
 </form>
-
-    <p><a href="/users/home">Home</a></p>

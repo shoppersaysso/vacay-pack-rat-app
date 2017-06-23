@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170616210049) do
   create_table "lists", force: :cascade do |t|
     t.string  "name"
     t.integer "user_id"
-    t.integer "privacy"
+    t.string  "privacy"
   end
 
   create_table "users", force: :cascade do |t|

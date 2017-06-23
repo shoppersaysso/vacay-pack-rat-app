@@ -1,19 +1,18 @@
-<h1><%=@user.username %>'s List</h1>
 
-<h1><%=@list.name %></h1>
+<h1><%= current_user.username %>'s List: <%=@list.name %></h1>
 
-    <p><% Item.all.each do |item| %>
-           <a href="/items/<%= item.id %>"><%= item.name %> </a><br>
-          <% end %> </p>
+
+    <body background img src="/images/coffee-smartphone-desk-pen.jpg" />
+    <p><h3><% @list.items.all.each do |item| %>
+          <ol> <a href="/items/<%= item.id %>"><%= item.name %> </a><br></ol>
+          <% end %></h3></p>
 
             <br>
-<a href='/lists//add'><h4>Add Items to List</h4></a>
-<a href='/lists//edit'><h4>Edit List</h4></a>
-<p>
-    <form action="/lists//delete" method="post">
-      <input type="hidden" id="hidden" name="_method" value="delete">
-      <input type='submit' id="delete" name="delete" value='Delete Tweet'>
-    </form>
 
-    <p><a href="/lists/index">View an Existing List</a></p>
-    <p> <a href="/lists/new">Create a New List</a></p>
+<a href='/lists/<%= @list.id %>/add'><h4>Add Items to List</h4></a>
+<a href='/lists/<%= @list.id %>/edit'><h4>Edit List</h4></a>
+<p>
+    <form action="/lists/<%= @list.id %>/delete" method="post">
+      <input type="hidden" id="hidden" name="_method" value="delete">
+      <input type='submit' id="delete" name="delete" value='Delete List'>
+    </form>

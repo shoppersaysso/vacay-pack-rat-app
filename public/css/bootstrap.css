@@ -245,6 +245,7 @@ th {
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
   }
+
   .label {
     border: 1px solid #000;
   }
@@ -6754,4 +6755,5 @@ button.close {
     display: none !important;
   }
 }
+
 /*# sourceMappingURL=bootstrap.css.map */

@@ -1,17 +1,22 @@
 
 <form action="/lists/<%= @list.id %>/add" method="POST">
-  <p><label>Add an existing item to your list:</label></p>
+  <!-- <p><label>Add a suggested item to your list:</label></p>
 
-  <% @user.items.all.each do |item| %>
+  <p><input id="item" type="checkbox" name="item[name]" value="toiletries">Toiletries</p>
+  <p><input id="item" type="checkbox" name="item[name]" value="underwear">Underwear</p>
+  <p><input id="item" type="checkbox" name="item[name]" value="socks">Socks</p>
+  <p><input id="item" type="checkbox" name="item[name]" value="sneakers">Sneakers</p>
+  <p><input id="item" type="checkbox" name="item[name]" value="pajamas">Pajamas</p>
+  <p><input id="item" type="checkbox" name="item[name]" value="phone_charger">Phone Charger</p> -->
+
+  <!-- <% @user.items.all.each do |item| %>
     <p><input id="item_<%= item.id %>" type="checkbox" name="item[list_id][]" value="<%= item.list_id %>">  <%= item.name %></p>
-    <% end %>
+    <% end %> -->
 
-  <p><label>or enter a new item:</label></p>
+  <p><label>Enter a new item:</label></p>
   <p>Item Name:<input type="text" name="item[name]" id="new_item"></p>
   <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
   <input type="hidden" name="list_id" value="<%=@list.id%>">
   <br></br>
    <input type="submit" id='submit' value="Add to List">
 </form>
-
-    <p><a href="/users/home">Home</a></p>
