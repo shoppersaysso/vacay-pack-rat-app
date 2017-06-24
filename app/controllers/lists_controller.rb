@@ -65,7 +65,7 @@ class ListsController < ApplicationController
         redirect "/lists/#{params[:id]}/edit"
       else
         @list = List.find_by_id(params[:id])
-        @list.name = params[:name]
+        @list.update(params[:list])
         @list.save
         redirect "/lists/#{@list.id}"
       end
@@ -92,6 +92,16 @@ class ListsController < ApplicationController
       else
         flash[:notice] = "Please log in to proceed"
         redirect '/login'
+      end
+    end
+
+    get "/lists/:id/print" do
+      if !logged_in?
+        redirect '/login'
+      else
+        @user = current_user
+        @list = List.find_by_id(params[:id])
+        erb :"/lists/print"
       end
     end
 

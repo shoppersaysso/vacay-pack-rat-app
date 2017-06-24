@@ -1,12 +1,27 @@
 
 <h1>Edit Your List</h1>
 
-<form action='/lists/<%= @list.id %>' method='post'>
+<form action='/lists/<%= @list.id %>/edit' method='post'>
   <input id='hidden' type='hidden' name='_method' value='patch'>
 
-  Name: <input type='text' id='list[name]' name='edit-list-name' value='<%= @list.name %>'>
-  <br></br>
+  <p>Name: <input type='text' id='name' name='list[name]' value='<%= @list.name %>' required></p>
+  <p>Privacy:
+    <select name="list[privacy]" id="privacy">
+    <option>Private</option>
+    <option>Public</option>
+  </select>
+
+    <input type='submit' id='submit' value='Edit List'>
+  </form>
 
 
-  <input type='submit' id='submit' value='Edit List'>
-</form>
+
+<br>
+  <p>Items:</>
+  <% @list.items.each do |item| %>
+  <form action="/items/<%= item.id %>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <p><input id="item_<%= item.id %>" type="checkbox" name="list[items][]" value="<%= item.id %>"><a href='/items/<%= item.id %>/edit'><%= item.name %></a></p>
+  <% end %>
+  <input type='submit' id="delete" name="delete" value='Delete Item(s)'>
+  </form>

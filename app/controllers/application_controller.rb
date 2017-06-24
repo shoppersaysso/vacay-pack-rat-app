@@ -83,4 +83,5 @@ class ApplicationController < Sinatra::Base
        !!current_user
      end
    end
+
 end

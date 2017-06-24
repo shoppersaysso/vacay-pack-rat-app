@@ -1,8 +1,8 @@
 
-<h1><%= current_user.username %>'s List: <%=@list.name %></h1>
+<h2><%= current_user.username %>'s List:</h2>
+<h1><%= @list.name %></h1>
+<p><i>(<%= @list.privacy %>)</i></p>
 
-
-    <body background img src="/images/coffee-smartphone-desk-pen.jpg" />
     <p><h3><% @list.items.all.each do |item| %>
           <ol> <a href="/items/<%= item.id %>"><%= item.name %> </a><br></ol>
           <% end %></h3></p>
@@ -11,7 +11,8 @@
 
 <a href='/lists/<%= @list.id %>/add'><h4>Add Items to List</h4></a>
 <a href='/lists/<%= @list.id %>/edit'><h4>Edit List</h4></a>
-<p>
+<a href='/lists/<%= @list.id %>/print'><h4>Print List</h4></a>
+
     <form action="/lists/<%= @list.id %>/delete" method="post">
       <input type="hidden" id="hidden" name="_method" value="delete">
       <input type='submit' id="delete" name="delete" value='Delete List'>

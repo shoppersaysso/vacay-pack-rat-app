@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h1><%= @list.name %></h1></div>
+  <div class="panel-body">
+
+    <p></p>
+          </div>
+
+          <table class="table">
+            <h3><ol><% @list.items.all.each do |item| %>
+                    <li><%= item.name %>
+                      <% end %></li></h3>
+                      </ol>
+          </table>
+        </div>

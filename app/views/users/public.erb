@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2><%= @user.username %>'s Public Lists:</h2></div>
+
+  <div class="panel-body">
+
+    <p></p>
+          </div>
+
+          <table class="table">
+
+      <p><h3><% @public_lists.each do |list| %>
+      <h3><%= list.name %></h3>
+        <ol>
+        <% list.items.each do |item| %>
+
+        <h5><li><%=  item.name %>
+            <% end %></li>
+            <% end %></h5> </ol>
+
+            <br>
+          </table>
+        </div>
