@@ -1,9 +1,10 @@
-<h1>Here are all of <%= current_user.username %>'s lists:</h1>
+<h3>Your lists:</h3>
 
 
-
+  <div class="list-group">
 <p><h3><% current_user.lists.all.each do |list| %>
-     <a href="/lists/<%= list.id %>"><%= list.name %> </a><br>
+     <a href="/lists/<%= list.id %>" class="list-group-item"><%= list.name %> </a><br>
     <% end %> </p></h3>
 
       <br>
+</div>

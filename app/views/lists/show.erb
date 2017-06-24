@@ -1,19 +1,33 @@
 
-<h2><%= current_user.username %>'s List:</h2>
+<h2><label class="hidden-print"><%= current_user.username %>'s List:</h2></label>
 <h1><%= @list.name %></h1>
-<p><i>(<%= @list.privacy %>)</i></p>
+<h5><label class="hidden-print">Privacy Status: <i><%= @list.privacy %></i></h5></label>
 
+<div class="list-group">
+<ol>
     <p><h3><% @list.items.all.each do |item| %>
-          <ol> <a href="/items/<%= item.id %>"><%= item.name %> </a><br></ol>
+
+          <li><a href="/items/<%= item.id %>" class="list-group-item"><%= item.name %> </a></li>
           <% end %></h3></p>
-
+        </ol>
             <br>
+</div>
 
-<a href='/lists/<%= @list.id %>/add'><h4>Add Items to List</h4></a>
-<a href='/lists/<%= @list.id %>/edit'><h4>Edit List</h4></a>
-<a href='/lists/<%= @list.id %>/print'><h4>Print List</h4></a>
-
-    <form action="/lists/<%= @list.id %>/delete" method="post">
+<div class="btn-group btn-group-justified hidden-print" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+<a class="btn btn-default" href='/lists/<%= @list.id %>/add' role="button">Add Items</a>
+  </div>
+  <div class="btn-group" role="group">
+<a class="btn btn-default" href='/lists/<%= @list.id %>/edit' role="button">Edit</a>
+  </div>
+  <div class="btn-group" role="group">
+<a class="btn btn-default" onClick="window.print()" role="button">Print</a>
+  </div>
+  <div class="btn-group" role="group">
+<form action="/lists/<%= @list.id %>/delete" method="post">
       <input type="hidden" id="hidden" name="_method" value="delete">
-      <input type='submit' id="delete" name="delete" value='Delete List'>
+      <input type='submit' class="btn btn-default" id="delete" name="delete" role="button"value='Delete'>
     </form>
+  </div>
+</div>
+</div>

@@ -110,7 +110,7 @@ class ListsController < ApplicationController
       @list = List.find_by_id(params[:id])
       if logged_in? && @list.user_id == session[:user_id]
         @list.delete
-        erb :'/lists/delete'
+        redirect '/users/home'
       elsif !logged_in? || @list.user_id != session[:user_id]
         erb :'/lists/error'
       else

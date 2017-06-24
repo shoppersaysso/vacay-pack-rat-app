@@ -1,9 +1,10 @@
 <h1>Here are all of <%= current_user.username %>'s items:</h1>
 
 
-
+      <div class="list-group">
 <p><% current_user.items.each do |item| %>
-     <a href="/items/<%= item.id %>"><%= item.name %> </a><br>
+     <a href="/items/<%= item.id %>" class="list-group-item"><%= item.name %> </a>
     <% end %> </p>
 
       <br>
+    </div>

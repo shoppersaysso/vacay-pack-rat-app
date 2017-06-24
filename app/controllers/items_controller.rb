@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
       if !logged_in?
         redirect '/login'
       else
-        erb :"/items/show"
+        erb :"/items/edit"
       end
     end
 
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
       else
         @item = Item.find(params[:id])
         @item.update(name: params[:name])
-        redirect "/items/#{@item.id}"
+        redirect "/items"
       end
     end
 

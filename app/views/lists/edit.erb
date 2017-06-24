@@ -4,8 +4,8 @@
 <form action='/lists/<%= @list.id %>/edit' method='post'>
   <input id='hidden' type='hidden' name='_method' value='patch'>
 
-  <p>Name: <input type='text' id='name' name='list[name]' value='<%= @list.name %>' required></p>
-  <p>Privacy:
+  <h4>Name: <input type='text' id='name' name='list[name]' value='<%= @list.name %>' required></h4>
+  <h4>Privacy:
     <select name="list[privacy]" id="privacy">
     <option>Private</option>
     <option>Public</option>
@@ -15,9 +15,8 @@
   </form>
 
 
-
-<br>
-  <p>Items:</>
+<br></br>
+  <h4>Items:<h4/>
   <% @list.items.each do |item| %>
   <form action="/items/<%= item.id %>/delete" method="post">
   <input type="hidden" id="hidden" name="_method" value="delete">

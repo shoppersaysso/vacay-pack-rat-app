@@ -1288,7 +1288,7 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 10px;
+  margin: 5 0 10px;
 }
 .lead {
   margin-bottom: 20px;
@@ -1301,6 +1301,7 @@ p {
     font-size: 21px;
   }
 }
+
 small,
 .small {
   font-size: 85%;
@@ -6756,4 +6757,9 @@ button.close {
   }
 }
 
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
 /*# sourceMappingURL=bootstrap.css.map */
