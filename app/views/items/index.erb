@@ -2,9 +2,14 @@
 
 
       <div class="list-group">
+        <p><h3><% if current_user.items.empty? %>
+          <p>Hmm...you don't have any items here. Maybe you should add some to a list?</a></p>
+        <% else %>
+
 <p><% current_user.items.each do |item| %>
      <a href="/items/<%= item.id %>" class="list-group-item"><%= item.name %> </a>
-    <% end %> </p>
+    <% end %>
+  <% end %>  </p>
 
       <br>
     </div>

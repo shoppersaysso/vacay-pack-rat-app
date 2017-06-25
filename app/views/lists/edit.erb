@@ -20,7 +20,7 @@
   <% @list.items.each do |item| %>
   <form action="/items/<%= item.id %>/delete" method="post">
   <input type="hidden" id="hidden" name="_method" value="delete">
-  <p><input id="item_<%= item.id %>" type="checkbox" name="list[items][]" value="<%= item.id %>"><a href='/items/<%= item.id %>/edit'><%= item.name %></a></p>
+  <p><input id="item_<%= item.id %>" type="radio" name="list[items][]" value="<%= item.id %>"><a href='/items/<%= item.id %>/edit'><%= item.name %></a></p>
   <% end %>
   <input type='submit' id="delete" name="delete" value='Delete Item(s)'>
   </form>

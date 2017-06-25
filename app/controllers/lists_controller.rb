@@ -60,15 +60,10 @@ class ListsController < ApplicationController
 
     patch "/lists/:id/edit" do
       @user = current_user
-      if params[:name] == ""
-        flash[:notice] = "Please enter content to proceed"
-        redirect "/lists/#{params[:id]}/edit"
-      else
         @list = List.find_by_id(params[:id])
         @list.update(params[:list])
         @list.save
         redirect "/lists/#{@list.id}"
-      end
     end
 
     get "/lists/:id/add" do
@@ -83,26 +78,18 @@ class ListsController < ApplicationController
       end
 
     post "/lists/:id/add" do
-      if logged_in? && params[:name] != ""
-        @user = current_user
-        @list = List.find_by(id: params[:id])
-        @item = Item.new(:name => params["item"]["name"], :list_id => params[:list_id], :user_id => session[:user_id])
-        @item.save
-        erb :"/lists/show"
-      else
-        flash[:notice] = "Please log in to proceed"
-        redirect '/login'
-      end
-    end
-
-    get "/lists/:id/print" do
-      if !logged_in?
-        redirect '/login'
-      else
-        @user = current_user
-        @list = List.find_by_id(params[:id])
-        erb :"/lists/print"
-      end
+      @user = current_user
+      @list = List.find_by(id: params[:id])
+        if logged_in? && params[:name].empty?
+          @item = Item.new(:name => params["suggest-name"], :list_id => params[:list_id], :user_id => session[:user_id])
+        elsif logged_in? && !params[:name].empty?
+          @item = Item.new(:name => params[:name], :list_id => params[:list_id], :user_id => session[:user_id])
+        else
+          flash[:notice] = "Please log in to proceed"
+          redirect '/login'
+        end
+      @item.save
+      redirect "/lists/#{@list.id}"
     end
 
     delete "/lists/:id/delete" do
@@ -110,7 +97,7 @@ class ListsController < ApplicationController
       @list = List.find_by_id(params[:id])
       if logged_in? && @list.user_id == session[:user_id]
         @list.delete
-        redirect '/users/home'
+        redirect "/lists"
       elsif !logged_in? || @list.user_id != session[:user_id]
         erb :'/lists/error'
       else

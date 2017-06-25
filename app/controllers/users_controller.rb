@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     if logged_in?
       @user = current_user
       @list = List.find_by_id(params[:id])
+      @items = @user.items.all
       erb :"/users/home"
     else
       redirect '/login'

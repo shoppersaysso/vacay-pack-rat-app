@@ -35,26 +35,23 @@ class ItemsController < ApplicationController
     end
 
     patch "/items/:id" do
-      if params[:name] == ""
-        flash[:notice] = "Name can't be blank!"
-        redirect "/items/#{params[:id]}/edit"
-      else
-        @item = Item.find(params[:id])
-        @item.update(name: params[:name])
-        redirect "/items"
-      end
+      @item = Item.find(params[:id])
+      @item.update(name: params[:name])
+      redirect "/lists/#{@item.list_id}"
     end
 
     delete "/items/:id/delete" do
       @user = current_user
       @item = Item.find_by_id(params[:id])
+      @list = @item.lists
+      @list = @item.list_id
       if logged_in? && @item.user_id == session[:user_id]
         @item.delete
-        redirect "/lists"
+        redirect '/lists'
       elsif !logged_in? || @item.user_id != session[:user_id]
-        erb :'/items/error'
+        erb :'error'
       else
-        erb :'/items/error'
+        erb :'error'
       end
     end
 

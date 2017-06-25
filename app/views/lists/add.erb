@@ -1,20 +1,22 @@
 
 <form action="/lists/<%= @list.id %>/add" method="POST">
-  <!-- <p><label>Add a suggested item to your list:</label></p>
+  <p><h4><label>Add a suggested item to your list:</label></h4></p>
 
-  <p><input id="item" type="checkbox" name="item[name]" value="toiletries">Toiletries</p>
-  <p><input id="item" type="checkbox" name="item[name]" value="underwear">Underwear</p>
-  <p><input id="item" type="checkbox" name="item[name]" value="socks">Socks</p>
-  <p><input id="item" type="checkbox" name="item[name]" value="sneakers">Sneakers</p>
-  <p><input id="item" type="checkbox" name="item[name]" value="pajamas">Pajamas</p>
-  <p><input id="item" type="checkbox" name="item[name]" value="phone_charger">Phone Charger</p> -->
+    <div class="row">
+    <div class="col-sm-4">
+  <p><input id="new_item" type="radio" name="suggest-name" value="Toiletries"> Toiletries</p>
+  <p><input id="new_item" type="radio" name="suggest-name" value="Underwear"> Underwear</p>
+  <p><input id="new_item" type="radio" name="suggest-name" value="Socks"> Socks</p>
+    </div>
+  <div class="col-sm-4">
+  <p><input id="new_item" type="radio" name="suggest-name" value="Sneakers"> Sneakers</p>
+  <p><input id="new_item" type="radio" name="suggest-name" value="Pajamas"> Pajamas</p>
+  <p><input id="new_item" type="radio" name="suggest-name" value="Phone Charger"> Phone Charger</p>
+    </div>
+    </div>
 
-  <!-- <% @user.items.all.each do |item| %>
-    <p><input id="item_<%= item.id %>" type="checkbox" name="item[list_id][]" value="<%= item.list_id %>">  <%= item.name %></p>
-    <% end %> -->
-
-  <p><label>Enter a new item:</label></p>
-  <p>Item Name:<input type="text" name="item[name]" id="new_item"></p>
+  <p><h4><label>Or enter a new item:</label></h4></p>
+  <p>Item Name:<input type="text" name="name" id="new_item"></p>
   <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
   <input type="hidden" name="list_id" value="<%=@list.id%>">
   <br></br>

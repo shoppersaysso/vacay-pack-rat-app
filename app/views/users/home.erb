@@ -1,6 +1,12 @@
+<div class="row hidden-print">
+    <img src="/images/pexels-photo-196667.jpeg">
+</div>
+
 <h2>Welcome, <%= current_user.username %>!</h2>
 
-
+<div class="row">
+    <div class="col-sm-6">
+<br></br>
 <ul class="list-group">
 
 <p><h3>
@@ -16,5 +22,25 @@
 
       <br>
 </ul>
+</div>
+    <div class="col-sm-6">
+      <br></br>
+      <p><h3>
+        <% if @items.empty? %>
+          <p>You don't have any items right now! Why don't you create some lists to add items?</a></p>
+        <% else %>
+          <p>Here are your items:</p></h3>
 
+      <% @items.each do |item| %>
+        <a href="/items/<%= item.id %>" class="list-group-item"><%= item.name %> </a>
+          <% end %>
+          <% end %>
+
+            <br>
+          </div>
+          <div class="col-sm-12">
 <a class="btn btn-default" href="/lists/new" role="button">Create a New List</a>
+<br></br>
+<p>See (and share) your public lists <a href="/users/<%= current_user.slug %>/public">here.</a>
+</div>
+</div>
