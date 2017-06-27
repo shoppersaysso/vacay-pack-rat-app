@@ -43,13 +43,9 @@ class ItemsController < ApplicationController
     delete "/items/:id/delete" do
       @user = current_user
       @item = Item.find_by_id(params[:id])
-      @list = @item.lists
-      @list = @item.list_id
-      if logged_in? && @item.user_id == session[:user_id]
+      if logged_in?
         @item.delete
         redirect '/lists'
-      elsif !logged_in? || @item.user_id != session[:user_id]
-        erb :'error'
       else
         erb :'error'
       end
