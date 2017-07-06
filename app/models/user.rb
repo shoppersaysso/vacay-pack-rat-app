@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :items, through: :lists
 
+  validates :email, :username, presence: true, uniqueness: true
 
   def slug
     username.downcase.gsub(" ","-")

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
     get "/items" do
       if logged_in?
-        @user = current_user
+
         erb :"/items/index"
       else
         redirect '/login'
@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
     end
 
     get "/items/:id" do
-      @user = current_user
       @item = Item.find_by_id(params[:id])
       @list = List.find_by_id(params[:id])
       if !logged_in?
@@ -41,7 +40,6 @@ class ItemsController < ApplicationController
     end
 
     delete "/items/:id/delete" do
-      @user = current_user
       @item = Item.find_by_id(params[:id])
       @list = @item.lists
       @list = @item.list_id

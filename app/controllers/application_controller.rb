@@ -37,17 +37,15 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-
   post "/signup" do
-    if params[:username] == "" || params[:password] == "" || params[:email] == ""
-      flash[:error] = "You have missing required fields."
-      redirect '/signup'
-    else
-      @user = User.create(username: params["username"], email: params["email"], password: params["password"])
+    @user = User.new(username: params["username"], email: params["email"], password: params["password"])
+    if @user.save
       session[:user_id] = @user.id
-      @user.save
       flash[:notice] = "Welcome, Pack Rat!"
       redirect '/home'
+    else
+      flash[:notice] = @user.errors
+      redirect '/signup'
     end
   end
 

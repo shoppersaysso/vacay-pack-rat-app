@@ -4,12 +4,12 @@
 <ul class="list-group">
 
 <p><h3>
-  <% if current_user.lists.empty? %>
+  <% if @lists.empty? %>
     <p>You don't have any lists right now! Why don't you create one?</a></p>
   <% else %>
     <p>Here are your lists:</p></h3>
 
-<% current_user.lists.each do |list| %>
+<% @lists.each do |list| %>
   <a href="/lists/<%= list.id %>" class="list-group-item"><%= list.name %> </a>
     <% end %>
     <% end %>

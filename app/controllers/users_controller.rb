@@ -2,9 +2,8 @@ class UsersController < ApplicationController
 
   get '/home' do
     if logged_in?
-      @user = current_user
       @list = List.find_by_id(params[:id])
-      @items = @user.items.all
+      @items = current_user.items
       erb :"/users/home"
     else
       redirect '/login'
@@ -13,7 +12,7 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    if logged_in? && current_user
+    if logged_in? && current_user == @user
       @list = List.find_by_id(params[:id])
       erb :"/users/home"
     else
